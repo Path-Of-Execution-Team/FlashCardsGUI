@@ -21,3 +21,4 @@ cypress.config.ts
 docker-compose.yml
 
 *.md
+.env.example
