@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import CustomButton from '@/components/CustomButton';
+import LogButton from '@/components/LogButton';
 import { Link } from '@/i18n/navigation';
 
 export default async function Home() {
@@ -11,6 +12,7 @@ export default async function Home() {
       <main>
         <h1>{t('welcome')}</h1>
         <CustomButton>{t('clickMe')}</CustomButton>
+        <LogButton />
         <Link href="/" locale="pl">
           Polish
         </Link>
