@@ -22,6 +22,6 @@ jobs:
       build_context: .
       dockerfile: ./Dockerfile
       test_command: "npm ci && npm test --if-present"
-      deploy_mode: direct
+      deploy_mode: registry
       platform: linux/arm64
     secrets: inherit
