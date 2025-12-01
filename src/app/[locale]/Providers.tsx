@@ -25,7 +25,7 @@ export function Providers({ children, locale, messages }: ProvidersProps) {
     <AppRouterCacheProvider options={{ key: 'css' }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages} timeZone={'Europe/Warsaw'}>
           {children}
         </NextIntlClientProvider>
       </ThemeProvider>
