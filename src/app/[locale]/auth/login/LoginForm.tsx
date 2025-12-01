@@ -140,7 +140,11 @@ export default function LoginForm() {
             {isSubmitting ? t('login.signingIn') : t('login.signIn')}
           </GradientButton>
         </Box>
-        <Link href={`/${locale}/auth/register`} variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
+        <Link
+          href={`/${locale}/auth/register`}
+          data-testid="register-link"
+          variant="body2"
+          sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
           {t('login.noAccountRegister')}
         </Link>
       </CardContent>

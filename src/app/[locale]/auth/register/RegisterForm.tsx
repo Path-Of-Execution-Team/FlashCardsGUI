@@ -200,7 +200,11 @@ const RegisterForm = () => {
           <FormControl error={!!errors.agreeToTerms} sx={{ gap: 0 }}>
             <FormControlLabel
               control={<Checkbox size="large" />}
-              label={<Link href={`/${locale}/auth/terms`}>{t('fields.agreeToTerms')}</Link>}
+              label={
+                <Link data-testid="terms-link" href={`/${locale}/auth/terms`}>
+                  {t('fields.agreeToTerms')}
+                </Link>
+              }
               {...register('agreeToTerms')}
             />
             {errors.agreeToTerms && <FormHelperText error={true}>{errors.agreeToTerms.message}</FormHelperText>}
@@ -218,7 +222,7 @@ const RegisterForm = () => {
             {isSubmitting ? t('register.signingUp') : t('register.signUp')}
           </GradientButton>
         </Box>
-        <Link href={`/${locale}/auth/login`} variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
+        <Link href={`/${locale}/auth/login`} data-testid="login-link" variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
           {t('register.alreadyHaveAccountLogin')}
         </Link>
       </CardContent>

@@ -52,4 +52,10 @@ describe('Login page', () => {
 
     cy.url().should('include', '/pl/auth/login');
   });
+
+  it('should go to register page when clicking the link', () => {
+    cy.visit(loginUrl);
+    cy.get('[data-testid="register-link"]').click();
+    cy.url().should('include', '/pl/auth/register');
+  });
 });
