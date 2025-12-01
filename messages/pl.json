@@ -1,4 +1,11 @@
 {
+  "appName": "Fiszki",
   "welcome": "Witaj!",
-  "clickMe": "Kliknij mnie"
+  "clickMe": "Kliknij mnie",
+  "login": {
+    "welcomeBack": "Witamy ponownie",
+    "login": "Login lub email",
+    "password": "Hasło",
+    "signIn": "Zaloguj się"
+  }
 }

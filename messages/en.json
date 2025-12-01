@@ -1,4 +1,11 @@
 {
+  "appName": "FlashCards",
   "welcome": "Welcome!",
-  "clickMe": "Click me"
+  "clickMe": "Click me",
+  "login": {
+    "welcomeBack": "Welcome back",
+    "login": "Login or email",
+    "password": "Password",
+    "signIn": "Sign In"
+  }
 }
