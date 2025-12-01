@@ -1,5 +1,5 @@
 describe('Login page', () => {
-  const loginUrl = '/pl/login';
+  const loginUrl = '/pl/auth/login';
 
   it('should shows validation errors when the form is empty', () => {
     cy.visit(loginUrl);
@@ -50,6 +50,6 @@ describe('Login page', () => {
 
     cy.contains('Nieprawidłowy login lub hasło').should('be.visible');
 
-    cy.url().should('include', '/pl/login');
+    cy.url().should('include', '/pl/auth/login');
   });
 });

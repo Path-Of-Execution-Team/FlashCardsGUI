@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
@@ -13,7 +12,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import FormField from '@/components/FormField';
 import GradientButton from '@/components/GradientButton';
+import PasswordField from '@/components/PasswordField';
 import apiClient, { setAuthToken } from '@/lib/apiClient';
 
 const loginSchema = z.object({
@@ -29,6 +30,7 @@ export default function LoginForm() {
   const router = useRouter();
 
   const [serverError, setServerError] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   const {
     register,
@@ -71,16 +73,16 @@ export default function LoginForm() {
       const status = err.response?.status;
 
       if (status === 401 || status === 403) {
-        setServerError(t('login.errors.invalidCredentials'));
+        setServerError(t('errors.invalidCredentials'));
         return;
       }
 
       if (status && status >= 500) {
-        setServerError(t('login.errors.serverError'));
+        setServerError(t('errors.serverError'));
         return;
       }
 
-      setServerError(t('login.errors.unknownError'));
+      setServerError(t('errors.unknownError'));
     }
   };
 
@@ -103,26 +105,27 @@ export default function LoginForm() {
       </Typography>
 
       <CardContent>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-          <TextField
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <FormField
             id="login"
-            data-testid="login-input"
-            label={t('login.login')}
+            dataTestId="login-input"
+            label={t('fields.login')}
             autoComplete="username"
-            {...register('login')}
-            error={!!errors.login}
-            helperText={errors.login?.message}
+            errors={errors.login}
+            fieldName="login"
+            register={register}
           />
 
-          <TextField
+          <PasswordField
             id="password"
-            data-testid="password-input"
-            label={t('login.password')}
-            type="password"
+            dataTestId="password-input"
             autoComplete="current-password"
-            {...register('password')}
-            error={!!errors.password}
-            helperText={errors.password?.message}
+            label={t('fields.password')}
+            fieldName="password"
+            register={register}
+            errors={errors.password}
+            setIsVisible={setIsVisible}
+            isVisible={isVisible}
           />
 
           {serverError && <Alert severity="error">{serverError}</Alert>}
@@ -137,7 +140,7 @@ export default function LoginForm() {
             {isSubmitting ? t('login.signingIn') : t('login.signIn')}
           </GradientButton>
         </Box>
-        <Link href={`/${locale}/register`} variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
+        <Link href={`/${locale}/auth/register`} variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
           {t('login.noAccountRegister')}
         </Link>
       </CardContent>
