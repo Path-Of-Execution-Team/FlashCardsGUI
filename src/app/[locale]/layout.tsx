@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from './Providers';
@@ -40,6 +41,7 @@ export default async function RootLayout({ children, params }: { children: React
             width: '100vw',
           }}>
           <Providers locale={locale} messages={messages}>
+            <LanguageSwitcher />
             {children}
           </Providers>
         </Container>
