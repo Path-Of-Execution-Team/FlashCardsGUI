@@ -1,7 +1,7 @@
 describe('Login page', () => {
   const loginUrl = '/pl/login';
 
-  it('pokazuje błędy walidacji przy pustym formularzu', () => {
+  it('should shows validation errors when the form is empty', () => {
     cy.visit(loginUrl);
 
     cy.get('[data-testid="login-submit"]').click();
@@ -10,7 +10,7 @@ describe('Login page', () => {
     cy.contains('Hasło musi mieć co najmniej 6 znaków').should('be.visible');
   });
 
-  it('wysyła poprawne dane do API i zapisuje token + redirect', () => {
+  it('should send correct data to API and save token + redirect', () => {
     cy.intercept('POST', '**/auth/login', {
       statusCode: 200,
       body: 'FAKE_JWT',
@@ -33,7 +33,7 @@ describe('Login page', () => {
     cy.url().should('match', /\/pl\/?$/);
   });
 
-  it('pokazuje komunikat o błędnych danych logowania przy 401', () => {
+  it('should show an error message for invalid login credentials on 401', () => {
     cy.intercept('POST', '**/auth/login', {
       statusCode: 401,
       body: { message: 'Invalid credentials' },
