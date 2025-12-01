@@ -1,12 +1,12 @@
-// src/app/[locale]/layout.tsx
 import Container from '@mui/material/Container';
 import { Roboto } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 import { routing } from '@/i18n/routing';
 
-import { Providers } from '../Providers';
+import { Providers } from './Providers';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -19,6 +19,8 @@ export default async function RootLayout({ children, params }: { children: React
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  const messages = await getMessages();
 
   return (
     <html lang={locale} className={roboto.variable}>
@@ -37,7 +39,9 @@ export default async function RootLayout({ children, params }: { children: React
             height: '100vh',
             width: '100vw',
           }}>
-          <Providers locale={locale}>{children}</Providers>
+          <Providers locale={locale} messages={messages}>
+            {children}
+          </Providers>
         </Container>
       </body>
     </html>

@@ -6,6 +6,14 @@
     "welcomeBack": "Witamy ponownie",
     "login": "Login lub email",
     "password": "Hasło",
-    "signIn": "Zaloguj się"
+    "signIn": "Zaloguj się",
+    "signingIn": "Logowanie...",
+    "errors": {
+      "loginRequired": "Login jest wymagany",
+      "passwordMin": "Hasło musi mieć co najmniej 6 znaków",
+      "invalidCredentials": "Nieprawidłowy login lub hasło",
+      "serverError": "Wystąpił błąd serwera. Proszę spróbuj ponownie później.",
+      "unknownError": "Błąd sieci. Proszę sprawdź swoje połączenie internetowe."
+    }
   }
 }
