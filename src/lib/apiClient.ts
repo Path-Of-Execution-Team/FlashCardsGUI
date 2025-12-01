@@ -55,8 +55,11 @@ apiClient.interceptors.response.use(
   response => response,
   error => {
     const status = error?.response?.status;
+    const url: string | undefined = error?.config?.url;
 
-    if ((status === 401 || status === 403) && typeof window !== 'undefined') {
+    const isLoginRequest = url?.includes('/auth/login');
+
+    if (!isLoginRequest && (status === 401 || status === 403) && typeof window !== 'undefined') {
       setAuthToken(null);
 
       const segments = window.location.pathname.split('/');

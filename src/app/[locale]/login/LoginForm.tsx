@@ -66,19 +66,21 @@ export default function LoginForm() {
       setAuthToken(token);
       router.push(`/${locale}`);
     } catch (e) {
-      const err = e as Error;
+      const err = e as { response?: { status?: number } };
 
-      if (err.message.includes('403')) {
+      const status = err.response?.status;
+
+      if (status === 401 || status === 403) {
         setServerError(t('login.errors.invalidCredentials'));
         return;
-      } else if (err.message.includes('500')) {
-        setServerError(t('login.errors.serverError'));
-        return;
-      } else {
-        setServerError(t('login.errors.unknownError'));
       }
 
-      setServerError(err.message);
+      if (status && status >= 500) {
+        setServerError(t('login.errors.serverError'));
+        return;
+      }
+
+      setServerError(t('login.errors.unknownError'));
     }
   };
 
@@ -104,6 +106,7 @@ export default function LoginForm() {
         <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <TextField
             id="login"
+            data-testid="login-input"
             label={t('login.login')}
             autoComplete="username"
             {...register('login')}
@@ -113,6 +116,7 @@ export default function LoginForm() {
 
           <TextField
             id="password"
+            data-testid="password-input"
             label={t('login.password')}
             type="password"
             autoComplete="current-password"
@@ -123,7 +127,13 @@ export default function LoginForm() {
 
           {serverError && <Alert severity="error">{serverError}</Alert>}
 
-          <GradientButton type="submit" disabled={isSubmitting} from="#FE6B8B" to="#FF8E53" shadowColor="rgba(254, 124, 111, 0.7)">
+          <GradientButton
+            data-testid="login-submit"
+            type="submit"
+            disabled={isSubmitting}
+            from="#FE6B8B"
+            to="#FF8E53"
+            shadowColor="rgba(254, 124, 111, 0.7)">
             {isSubmitting ? t('login.signingIn') : t('login.signIn')}
           </GradientButton>
         </Box>
