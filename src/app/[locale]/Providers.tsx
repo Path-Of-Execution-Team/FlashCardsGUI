@@ -6,7 +6,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { NextIntlClientProvider } from 'next-intl';
 import { ReactNode, useEffect } from 'react';
 
-import { setApiClientLocale } from '@/lib/apiClient';
+import { loadAuthTokenFromCookie, setApiClientLocale } from '@/lib/apiClient';
 import theme from '@/styles/theme';
 
 type ProvidersProps = {
@@ -18,6 +18,7 @@ type ProvidersProps = {
 export function Providers({ children, locale, messages }: ProvidersProps) {
   useEffect(() => {
     setApiClientLocale(locale);
+    loadAuthTokenFromCookie();
   }, [locale]);
 
   return (

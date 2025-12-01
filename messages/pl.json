@@ -8,6 +8,7 @@
     "password": "Hasło",
     "signIn": "Zaloguj się",
     "signingIn": "Logowanie...",
+    "noAccountRegister": "Nie masz konta? Zarejestruj się",
     "errors": {
       "loginRequired": "Login jest wymagany",
       "passwordMin": "Hasło musi mieć co najmniej 6 znaków",

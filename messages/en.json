@@ -8,6 +8,7 @@
     "password": "Password",
     "signIn": "Sign In",
     "signingIn": "Signing in...",
+    "noAccountRegister": "Don't have an account? Register",
     "errors": {
       "loginRequired": "Login is required",
       "passwordMin": "Password must be at least 6 characters",

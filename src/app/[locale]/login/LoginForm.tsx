@@ -4,15 +4,17 @@ import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import GradientButton from '@/components/GradientButton';
-import apiClient from '@/lib/apiClient';
+import apiClient, { setAuthToken } from '@/lib/apiClient';
 
 const loginSchema = z.object({
   login: z.string().min(1, 'login.errors.loginRequired'),
@@ -23,6 +25,9 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
   const t = useTranslations();
+  const locale = useLocale();
+  const router = useRouter();
+
   const [serverError, setServerError] = useState<string | null>(null);
 
   const {
@@ -56,8 +61,10 @@ export default function LoginForm() {
         identifier: data.login,
         password: data.password,
       });
+      const token = response.data;
 
-      console.log('Zalogowano!', response.data);
+      setAuthToken(token);
+      router.push(`/${locale}`);
     } catch (e) {
       const err = e as Error;
 
@@ -116,16 +123,13 @@ export default function LoginForm() {
 
           {serverError && <Alert severity="error">{serverError}</Alert>}
 
-          <GradientButton
-            type="submit"
-            disabled={isSubmitting}
-            from="#FE6B8B"
-            to="#FF8E53"
-            shadowColor="rgba(254, 124, 111, 0.7)"
-            sx={{ marginTop: 1 }}>
+          <GradientButton type="submit" disabled={isSubmitting} from="#FE6B8B" to="#FF8E53" shadowColor="rgba(254, 124, 111, 0.7)">
             {isSubmitting ? t('login.signingIn') : t('login.signIn')}
           </GradientButton>
         </Box>
+        <Link href={`/${locale}/register`} variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
+          {t('login.noAccountRegister')}
+        </Link>
       </CardContent>
     </Card>
   );
