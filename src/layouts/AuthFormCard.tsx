@@ -35,7 +35,15 @@ const AuthFormCard = ({
   isSubmittingText,
 }: AuthFormCardProps) => {
   return (
-    <Box component="div" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', width: { xs: '100%', md: '40%' } }}>
+    <Box
+      component="div"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '16px',
+        width: { xs: '100%', md: '40%' },
+      }}>
       <Card
         sx={{
           width: '100%',
@@ -45,8 +53,12 @@ const AuthFormCard = ({
           flexDirection: 'column',
           backdropFilter: 'blur(10px)',
         }}>
-        <Typography variant="h4" component="h2" sx={{ pt: 3, textAlign: 'center' }}>
-          <CowLogoIcon sx={{ fontSize: 128 }} /> {title}
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{ pt: 3, textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
+          <CowLogoIcon sx={{ fontSize: 96 }} />
+          {title}
         </Typography>
 
         <Typography variant="subtitle2" component="h3" sx={{ pt: 1, pb: 1, textAlign: 'center' }}>
