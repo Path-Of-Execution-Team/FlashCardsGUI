@@ -1,4 +1,54 @@
 {
+  "appName": "Fiszki",
   "welcome": "Witaj!",
-  "clickMe": "Kliknij mnie"
+  "clickMe": "Kliknij mnie",
+  "login": {
+    "welcomeBack": "Witamy ponownie",
+    "signIn": "Zaloguj się",
+    "signingIn": "Logowanie...",
+    "noAccountRegister": "Nie masz konta? Zarejestruj się",
+    "errors": {
+      "loginRequired": "Login jest wymagany",
+      "passwordMin": "Hasło musi mieć co najmniej 6 znaków"
+    }
+  },
+  "register": {
+    "createAccount": "Utwórz konto",
+    "signUp": "Zarejestruj się",
+    "signingUp": "Rejestracja...",
+    "alreadyHaveAccountLogin": "Masz już konto? Zaloguj się",
+    "errors": {
+      "usernameRequired": "Nazwa użytkownika jest wymagana",
+      "usernameMax": "Nazwa użytkownika nie może przekraczać 16 znaków",
+      "usernameInvalid": "Nazwa użytkownika może zawierać tylko litery, cyfry i podkreślenia",
+      "invalidEmail": "Nieprawidłowy adres email",
+      "emailsDoNotMatch": "Adresy email nie pasują do siebie",
+      "passwordMin": "Hasło musi mieć co najmniej 8 znaków",
+      "passwordMax": "Hasło nie może przekraczać 100 znaków",
+      "passwordWeak": "Hasło musi zawierać co najmniej jedną wielką literę, jedną małą literę, jedną cyfrę i jeden znak specjalny. Długość minimalna to 8 znaków, maksymalna 100 znaków.",
+      "passwordsDoNotMatch": "Hasła nie pasują do siebie",
+      "agreeToTerms": "Musisz zaakceptować warunki"
+    }
+  },
+  "fields": {
+    "login": "Login lub email",
+    "password": "Hasło",
+    "confirmPassword": "Potwierdź hasło",
+    "username": "Nazwa użytkownika",
+    "email": "Email",
+    "confirmEmail": "Potwierdź email",
+    "agreeToTerms": "Zgadzam się z warunkami"
+  },
+  "passwordStrength": {
+    "veryWeak": "Bardzo słabe",
+    "weak": "Słabe",
+    "medium": "Średnie",
+    "strong": "Silne",
+    "veryStrong": "Bardzo silne"
+  },
+  "errors": {
+    "networkError": "Wystąpił błąd sieci. Proszę sprawdź swoje połączenie internetowe.",
+    "serverError": "Wystąpił błąd serwera. Proszę spróbuj ponownie później.",
+    "invalidCredentials": "Nieprawidłowy login lub hasło"
+  }
 }

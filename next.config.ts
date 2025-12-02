@@ -7,7 +7,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-
+  images: {
+    domains: ['flagsapi.com'],
+  },
   async rewrites() {
     return [
       {
