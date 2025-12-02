@@ -1,15 +1,10 @@
 'use client';
 
-import Alert from '@mui/material/Alert';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -17,8 +12,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import FormField from '@/components/FormField';
-import GradientButton from '@/components/GradientButton';
 import PasswordField from '@/components/PasswordField';
+import AuthFormCard from '@/layouts/AuthFormCard';
 import apiClient, { setAuthToken } from '@/lib/apiClient';
 import { ApiErrorResponse } from '@/types/app.types';
 
@@ -121,112 +116,86 @@ const RegisterForm = () => {
   };
 
   return (
-    <Card
-      sx={{
-        width: { xs: '100%', md: '40%' },
-        backgroundColor: 'rgba(0, 0, 0, 0.15)',
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        backdropFilter: 'blur(10px)',
-      }}>
-      <Typography variant="h4" component="h2" sx={{ pt: 3, textAlign: 'center' }}>
-        {t('appName')}
-      </Typography>
+    <AuthFormCard
+      title={t('appName')}
+      subtitle={t('register.createAccount')}
+      onSubmit={handleSubmit(onSubmit)}
+      linkHref={`/${locale}/auth/login`}
+      linkText={t('register.alreadyHaveAccountLogin')}
+      serverError={serverError}
+      isSubmitting={isSubmitting}
+      submitButtonText={t('register.signUp')}
+      isSubmittingText={t('register.signingUp')}>
+      <FormField
+        id="username"
+        dataTestId="register-username"
+        label={t('fields.username')}
+        autoComplete="username"
+        errors={errors.username}
+        fieldName="username"
+        register={register}
+      />
 
-      <Typography variant="subtitle2" component="h3" sx={{ pt: 1, pb: 1, textAlign: 'center' }}>
-        {t('register.createAccount')}
-      </Typography>
+      <FormField
+        id="email"
+        dataTestId="register-email"
+        label={t('fields.email')}
+        autoComplete="email"
+        errors={errors.email}
+        fieldName="email"
+        register={register}
+      />
 
-      <CardContent>
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <FormField
-            id="username"
-            dataTestId="login-username"
-            label={t('fields.username')}
-            autoComplete="username"
-            errors={errors.username}
-            fieldName="username"
-            register={register}
-          />
+      <FormField
+        id="confirmEmail"
+        dataTestId="register-confirm-email"
+        label={t('fields.confirmEmail')}
+        autoComplete="email"
+        errors={errors.confirmEmail}
+        fieldName="confirmEmail"
+        register={register}
+      />
 
-          <FormField
-            id="email"
-            dataTestId="register-email"
-            label={t('fields.email')}
-            autoComplete="email"
-            errors={errors.email}
-            fieldName="email"
-            register={register}
-          />
+      <PasswordField
+        id="password"
+        dataTestId="password-input"
+        autoComplete="new-password"
+        label={t('fields.password')}
+        fieldName="password"
+        register={register}
+        errors={errors.password}
+        setIsVisible={setIsVisible}
+        isVisible={isVisible}
+        watch={watch}
+        strengthMeter
+        isDirty={!!dirtyFields.password}
+      />
 
-          <FormField
-            id="confirmEmail"
-            dataTestId="register-confirm-email"
-            label={t('fields.confirmEmail')}
-            autoComplete="email"
-            errors={errors.confirmEmail}
-            fieldName="confirmEmail"
-            register={register}
-          />
+      <PasswordField
+        id="confirmPassword"
+        dataTestId="confirm-password-input"
+        autoComplete="new-password"
+        label={t('fields.confirmPassword')}
+        fieldName="confirmPassword"
+        register={register}
+        errors={errors.confirmPassword}
+        setIsVisible={setIsVisible}
+        isVisible={isVisible}
+      />
 
-          <PasswordField
-            id="password"
-            dataTestId="password-input"
-            autoComplete="new-password"
-            label={t('fields.password')}
-            fieldName="password"
-            register={register}
-            errors={errors.password}
-            setIsVisible={setIsVisible}
-            isVisible={isVisible}
-            watch={watch}
-            strengthMeter
-            isDirty={!!dirtyFields.password}
-          />
-
-          <PasswordField
-            id="confirmPassword"
-            dataTestId="confirm-password-input"
-            autoComplete="new-password"
-            label={t('fields.confirmPassword')}
-            fieldName="confirmPassword"
-            register={register}
-            errors={errors.confirmPassword}
-            setIsVisible={setIsVisible}
-            isVisible={isVisible}
-          />
-
-          <FormControl error={!!errors.agreeToTerms} sx={{ gap: 0 }}>
-            <FormControlLabel
-              control={<Checkbox size="large" />}
-              label={
-                <Link data-testid="terms-link" href={`/${locale}/auth/terms`}>
-                  {t('fields.agreeToTerms')}
-                </Link>
-              }
-              {...register('agreeToTerms')}
-            />
-            {errors.agreeToTerms && <FormHelperText error={true}>{errors.agreeToTerms.message}</FormHelperText>}
-          </FormControl>
-
-          {serverError && <Alert severity="error">{serverError}</Alert>}
-
-          <GradientButton
-            data-testid="login-submit"
-            type="submit"
-            disabled={isSubmitting}
-            from="#FE6B8B"
-            to="#FF8E53"
-            shadowColor="rgba(254, 124, 111, 0.7)">
-            {isSubmitting ? t('register.signingUp') : t('register.signUp')}
-          </GradientButton>
-        </Box>
-        <Link href={`/${locale}/auth/login`} data-testid="login-link" variant="body2" sx={{ display: 'block', marginTop: 2, textAlign: 'center' }}>
-          {t('register.alreadyHaveAccountLogin')}
-        </Link>
-      </CardContent>
-    </Card>
+      <FormControl error={!!errors.agreeToTerms} sx={{ gap: 0 }}>
+        <FormControlLabel
+          control={<Checkbox size="large" />}
+          label={
+            <Link data-testid="terms-link" href={`/${locale}/auth/terms`}>
+              {t('fields.agreeToTerms')}
+            </Link>
+          }
+          {...register('agreeToTerms')}
+        />
+        {errors.agreeToTerms && <FormHelperText error={true}>{errors.agreeToTerms.message}</FormHelperText>}
+      </FormControl>
+    </AuthFormCard>
   );
 };
 export default RegisterForm;

@@ -2,7 +2,7 @@ describe('Register page', () => {
   const registerUrl = '/pl/auth/register';
 
   const fillValidForm = () => {
-    cy.get('[data-testid="login-username"]').type('Puszmen12');
+    cy.get('[data-testid="register-username"]').type('Puszmen12');
     cy.get('[data-testid="register-email"]').type('puszmen@example.com');
     cy.get('[data-testid="register-confirm-email"]').type('puszmen@example.com');
     cy.get('[data-testid="password-input"]').type('Zaq1@WSX');
@@ -14,7 +14,7 @@ describe('Register page', () => {
   it('should show validation errors when the form is empty', () => {
     cy.visit(registerUrl);
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
 
     cy.contains('Nazwa użytkownika jest wymagana').should('be.visible');
     cy.contains('Nieprawidłowy adres email').should('be.visible');
@@ -35,7 +35,7 @@ describe('Register page', () => {
     cy.visit(registerUrl);
     fillValidForm();
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
 
     cy.wait('@registerRequest').its('request.body').should('deep.equal', {
       username: 'Puszmen12',
@@ -62,7 +62,7 @@ describe('Register page', () => {
     cy.visit(registerUrl);
     fillValidForm();
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
     cy.wait('@registerRequest');
 
     cy.contains('Użytkownik o takiej nazwie już istnieje').should('be.visible');
@@ -79,7 +79,7 @@ describe('Register page', () => {
     cy.visit(registerUrl);
     fillValidForm();
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
     cy.wait('@registerRequest');
 
     cy.contains('Wystąpił błąd serwera. Proszę spróbuj ponownie później.').should('be.visible');
@@ -87,7 +87,7 @@ describe('Register page', () => {
 
   it('should go to login page when clicking the link', () => {
     cy.visit(registerUrl);
-    cy.get('[data-testid="login-link"]').click();
+    cy.get('[data-testid="another-action-link"]').click();
     cy.url().should('include', '/pl/auth/login');
   });
 
