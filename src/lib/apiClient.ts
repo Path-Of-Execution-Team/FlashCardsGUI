@@ -65,7 +65,7 @@ apiClient.interceptors.response.use(
       const segments = window.location.pathname.split('/');
       const locale = segments[1] || 'pl';
 
-      window.location.href = `/${locale}/login`;
+      window.location.href = `/${locale}/auth/login`;
     }
 
     return Promise.reject(error);

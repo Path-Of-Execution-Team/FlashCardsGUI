@@ -41,7 +41,7 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <Box sx={{ position: 'absolute', top: 16, right: 16 }}>
+    <Box sx={{ position: 'absolute', top: 16, right: 16, zIndex: 99999 }}>
       <IconButton
         aria-controls={open ? 'languages-menu' : undefined}
         aria-haspopup="true"

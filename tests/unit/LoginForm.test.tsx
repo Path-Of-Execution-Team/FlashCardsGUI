@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import LoginForm from '@/app/[locale]/login/LoginForm';
+import LoginForm from '@/app/[locale]/auth/login/LoginForm';
 import apiClient, * as apiClientModule from '@/lib/apiClient';
 
 describe('LoginForm', () => {
@@ -27,10 +27,10 @@ describe('LoginForm', () => {
 
     render(<LoginForm />);
 
-    fireEvent.change(screen.getByLabelText('login.login'), {
+    fireEvent.change(screen.getByLabelText('fields.login'), {
       target: { value: 'Puszmen12' },
     });
-    fireEvent.change(screen.getByLabelText('login.password'), {
+    fireEvent.change(screen.getByLabelText('fields.password'), {
       target: { value: 'zaq1@WSX' },
     });
 
@@ -54,15 +54,15 @@ describe('LoginForm', () => {
 
     render(<LoginForm />);
 
-    fireEvent.change(screen.getByLabelText('login.login'), {
+    fireEvent.change(screen.getByLabelText('fields.login'), {
       target: { value: 'zlyUser' },
     });
-    fireEvent.change(screen.getByLabelText('login.password'), {
+    fireEvent.change(screen.getByLabelText('fields.password'), {
       target: { value: 'zleHaslo' },
     });
 
     fireEvent.click(screen.getByRole('button', { name: 'login.signIn' }));
 
-    expect(await screen.findByText('login.errors.invalidCredentials')).toBeInTheDocument();
+    expect(await screen.findByText('errors.invalidCredentials')).toBeInTheDocument();
   });
 });

@@ -1,10 +1,10 @@
 describe('Login page', () => {
-  const loginUrl = '/pl/login';
+  const loginUrl = '/pl/auth/login';
 
   it('should shows validation errors when the form is empty', () => {
     cy.visit(loginUrl);
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
 
     cy.contains('Login jest wymagany').should('be.visible');
     cy.contains('Hasło musi mieć co najmniej 6 znaków').should('be.visible');
@@ -21,7 +21,7 @@ describe('Login page', () => {
     cy.get('[data-testid="login-input"]').type('Puszmen12');
     cy.get('[data-testid="password-input"]').type('zaq1@WSX');
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
 
     cy.wait('@loginRequest').its('request.body').should('deep.equal', {
       identifier: 'Puszmen12',
@@ -44,12 +44,18 @@ describe('Login page', () => {
     cy.get('[data-testid="login-input"]').type('zlyUser');
     cy.get('[data-testid="password-input"]').type('zleHaslo');
 
-    cy.get('[data-testid="login-submit"]').click();
+    cy.get('[data-testid="submit-button"]').click();
 
     cy.wait('@loginRequest');
 
     cy.contains('Nieprawidłowy login lub hasło').should('be.visible');
 
-    cy.url().should('include', '/pl/login');
+    cy.url().should('include', '/pl/auth/login');
+  });
+
+  it('should go to register page when clicking the link', () => {
+    cy.visit(loginUrl);
+    cy.get('[data-testid="another-action-link"]').click();
+    cy.url().should('include', '/pl/auth/register');
   });
 });
