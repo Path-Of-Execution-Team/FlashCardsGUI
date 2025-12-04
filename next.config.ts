@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         source: '/metrics',
         destination: '/api/metrics',
       },
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://backend:8080'}/:path*`,
+      },
     ];
   },
 };
