@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
     domains: ['flagsapi.com'],
   },
   async rewrites() {
+    const backendHost = process.env.NEXT_PUBLIC_API_URL || 'backend:8080';
+
     return [
       {
         source: '/metrics',
@@ -18,7 +20,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://backend:8080'}/:path*`,
+        destination: `http://${backendHost}/api/:path*`,
       },
     ];
   },
