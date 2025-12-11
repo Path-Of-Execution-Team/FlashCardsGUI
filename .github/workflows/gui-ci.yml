@@ -2,13 +2,9 @@ name: GUI CI (tests + docker image + deploy)
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
 
 env:
   REGISTRY: ghcr.io
@@ -22,16 +18,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.17"
-          cache: "npm"
+          node-version: 22.17
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests & build
+      - name: Run tests & build frontend
         run: |
           npm run lint --if-present
           npm test --if-present
@@ -87,7 +83,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Dockerfile
+          file: Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}:${{ steps.vars.outputs.tag }}
@@ -96,11 +92,10 @@ jobs:
     name: Deploy to Kubernetes
     needs: build_and_push
     runs-on: ubuntu-latest
-
     if: github.event_name == 'push'
 
     steps:
-      - name: Deploy via SSH to Kubernetes
+      - name: Deploy frontend via SSH
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -111,8 +106,8 @@ jobs:
             set -e
             export KUBECONFIG=/home/ubuntu/.kube/config
 
-            IMAGE=ghcr.io/${{ steps.build_and_push.outputs.image_name }}:${{ steps.build_and_push.outputs.tag }}
-            NAMESPACE=${{ steps.build_and_push.outputs.namespace }}
+            IMAGE="ghcr.io/${{ needs.build_and_push.outputs.image_name }}:${{ needs.build_and_push.outputs.tag }}"
+            NAMESPACE="${{ needs.build_and_push.outputs.namespace }}"
 
             echo Deploying FRONTEND to namespace: $NAMESPACE
             echo Using image: $IMAGE
