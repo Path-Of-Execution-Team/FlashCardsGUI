@@ -46,6 +46,11 @@ jobs:
       contents: read
       packages: write
 
+    outputs:
+      image_name: ${{ steps.vars.outputs.image_name }}
+      tag: ${{ steps.vars.outputs.tag }}
+      namespace: ${{ steps.vars.outputs.namespace }}
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
