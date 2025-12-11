@@ -1,4 +1,55 @@
 {
+  "appName": "FlashCards",
   "welcome": "Welcome!",
-  "clickMe": "Click me"
+  "clickMe": "Click me",
+  "login": {
+    "welcomeBack": "Welcome back",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "noAccountRegister": "Don't have an account? Register",
+    "errors": {
+      "loginRequired": "Login is required",
+      "passwordMin": "Password must be at least 6 characters"
+    }
+  },
+  "register": {
+    "createAccount": "Create an account",
+    "signUp": "Sign up",
+    "signingUp": "Signing up...",
+    "alreadyHaveAccountLogin": "Already have an account? Sign in",
+    "errors": {
+      "usernameRequired": "Username is required",
+      "usernameMax": "Username cannot exceed 16 characters",
+      "usernameInvalid": "Username may contain only letters, numbers and underscores",
+      "invalidEmail": "Invalid email address",
+      "emailsDoNotMatch": "Email addresses do not match",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordMax": "Password cannot exceed 100 characters",
+      "passwordWeak": "Password must contain at least one uppercase letter, one lowercase letter, one digit and one special character. Minimum length is 8 characters, maximum is 100 characters.",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "agreeToTerms": "You must accept the terms"
+    }
+  },
+  "fields": {
+    "login": "Login or email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "username": "Username",
+    "email": "Email",
+    "confirmEmail": "Confirm email",
+    "agreeToTerms": "I agree to the terms"
+  },
+  "passwordStrength": {
+    "veryWeak": "Very weak",
+    "weak": "Weak",
+    "medium": "Medium",
+    "strong": "Strong",
+    "veryStrong": "Very strong"
+  },
+  "errors": {
+    "networkError": "A network error occurred. Please check your internet connection.",
+    "serverError": "A server error occurred. Please try again later.",
+    "unknownError": "Network error. Please check your internet connection.",
+    "invalidCredentials": "Invalid login or password"
+  }
 }
