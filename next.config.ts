@@ -7,9 +7,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: {
-    domains: ['flagsapi.com'],
-  },
+  images: {},
   async rewrites() {
     const backendHost = process.env.NEXT_PUBLIC_API_URL || 'backend:8080';
 
