@@ -35,11 +35,6 @@ const LanguageSwitcher = () => {
     router.push(newPath);
   };
 
-  const getCountryCode = (locale: string) => {
-    if (locale === 'en') return 'US';
-    return locale.toUpperCase();
-  };
-
   return (
     <Box sx={{ position: 'absolute', top: 16, right: 16, zIndex: 99999 }}>
       <IconButton
@@ -63,13 +58,7 @@ const LanguageSwitcher = () => {
         }}>
         {routing.locales.map((l, i) => (
           <MenuItem key={i} onClick={() => handleSwitchLanguage(l)} disabled={l === locale}>
-            <Image
-              src={`https://flagsapi.com/${getCountryCode(l)}/flat/32.png`}
-              alt={l.toUpperCase()}
-              width={32}
-              height={32}
-              style={{ marginRight: '0.5rem' }}
-            />
+            <Image src={`/images/flags/${l}.png`} alt={`${l} flag`} width={32} height={32} style={{ marginRight: '0.5rem' }} />
             {l.toUpperCase()}
           </MenuItem>
         ))}
