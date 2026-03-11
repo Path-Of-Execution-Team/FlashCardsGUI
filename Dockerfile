@@ -1,4 +1,5 @@
-FROM node:22-alpine AS builder
+# ---- Build ----
+FROM node:22.17-alpine3.22 AS builder
 
 RUN apk add --no-cache libc6-compat
 
@@ -14,7 +15,8 @@ COPY . .
 RUN npm run build
 RUN npm prune --omit=dev
 
-FROM node:22-alpine AS runner
+# ---- Run ----
+FROM node:22.17-alpine3.22 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
