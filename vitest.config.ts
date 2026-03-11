@@ -6,6 +6,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./tests/utils/setup.tsx'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage',
+    },
   },
   resolve: {
     alias: {
