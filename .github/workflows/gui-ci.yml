@@ -93,11 +93,10 @@ jobs:
 
           if [ "$DEPLOY_ENVIRONMENT" = "prod" ]; then
             IMAGE_NAME=${OWNER}/flashcards-gui
-            NAMESPACE=flashcards
           else
             IMAGE_NAME=${OWNER}/flashcards-gui-dev
-            NAMESPACE=flashcards-dev
           fi
+          NAMESPACE=moomento
 
           TAG=sha-${SHA}
 
