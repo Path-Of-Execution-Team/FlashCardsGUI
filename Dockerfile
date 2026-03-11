@@ -1,11 +1,11 @@
-FROM --platform=$BUILDPLATFORM node:22-alpine AS base
+# ---- Build ----
+FROM --platform=$BUILDPLATFORM node:22.17-alpine3.22 AS base
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
-RUN apk add --no-cache libc6-compat
-
 FROM base AS deps
-WORKDIR /app
+RUN apk add --no-cache libc6-compat
+ENV HUSKY=0
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
 
@@ -20,7 +20,7 @@ RUN --mount=type=cache,target=/root/.npm npm run build
 
 RUN apk del .build-deps
 
-FROM node:22-alpine AS runner
+FROM node:22.17-alpine3.22 AS runner
 WORKDIR /app
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
@@ -32,6 +32,5 @@ USER node
 COPY --chown=node:node --from=builder /app/.next/standalone ./
 COPY --chown=node:node --from=builder /app/.next/static     ./.next/static
 COPY --chown=node:node --from=builder /app/public            ./public
-
 EXPOSE 3000
 CMD ["node", "server.js"]
