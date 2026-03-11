@@ -13,6 +13,14 @@ on:
           - auto
           - dev
           - prod
+      run_sonar:
+        description: "Run SonarCloud analysis"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 env:
   REGISTRY: ghcr.io
@@ -47,6 +55,7 @@ jobs:
           npm run build
 
       - name: SonarCloud analysis
+        if: github.event_name == 'pull_request' || github.event.inputs.run_sonar == 'true'
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
