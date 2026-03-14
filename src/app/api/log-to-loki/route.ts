@@ -5,10 +5,16 @@ export async function POST(req: Request) {
 
   try {
     const log = await req.json();
+    const appName = process.env.APP_NAME || 'frontend';
+    const level = log.level || 'info';
 
     const streamLabels = {
-      app: process.env.APP_NAME || 'frontend',
-      level: log.level || 'info',
+      app: appName,
+      service_name: appName,
+      level,
+      namespace: process.env.POD_NAMESPACE || 'unknown',
+      pod: process.env.POD_NAME || 'unknown',
+      node: process.env.NODE_NAME || 'unknown',
       env: process.env.NODE_ENV || 'development',
     };
 
