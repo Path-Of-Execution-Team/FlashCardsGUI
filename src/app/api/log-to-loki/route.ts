@@ -6,36 +6,26 @@ export async function POST(req: Request) {
   try {
     const log = await req.json();
     const appName = process.env.APP_NAME || 'frontend';
-    const level = log.level || 'info';
-
-    const streamLabels = {
+    const level = typeof log.level === 'string' ? log.level.toLowerCase() : 'info';
+    const structuredLog = {
+      ...log,
+      timestamp: new Date().toISOString(),
       app: appName,
       service_name: appName,
-      level,
+      env: process.env.NODE_ENV || 'development',
       namespace: process.env.POD_NAMESPACE || 'unknown',
       pod: process.env.POD_NAME || 'unknown',
       node: process.env.NODE_NAME || 'unknown',
-      env: process.env.NODE_ENV || 'development',
+      level,
     };
 
-    const lokiPayload = {
-      streams: [
-        {
-          stream: streamLabels,
-          values: [[`${Date.now()}000000`, JSON.stringify(log)]],
-        },
-      ],
-    };
-
-    const res = await fetch(process.env.LOKI_PUSH_URL!, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(lokiPayload),
-    });
-
-    if (!res.ok) {
-      console.error('Loki responded with:', res.status, await res.text());
-      throw new Error('Loki push failed');
+    const serializedLog = JSON.stringify(structuredLog);
+    if (level === 'error') {
+      console.error(serializedLog);
+    } else if (level === 'warn' || level === 'warning') {
+      console.warn(serializedLog);
+    } else {
+      console.log(serializedLog);
     }
 
     recordRequest('/api/log-to-loki', '200', Date.now() - start, 'POST');

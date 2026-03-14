@@ -2,6 +2,7 @@
 export async function logToLoki(data: { level: string; msg: string; [key: string]: any }) {
   const logEntry = {
     ...data,
+    level: data.level.toLowerCase(),
     timestamp: new Date().toISOString(),
     path: window.location.pathname,
     userAgent: navigator.userAgent,
