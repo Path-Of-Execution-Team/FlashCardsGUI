@@ -51,7 +51,7 @@ jobs:
       - name: Run tests & build frontend
         run: |
           npm run lint --if-present
-          npm test --if-present
+          npm run test:coverage --if-present
           npm run build
 
       - name: SonarCloud analysis
@@ -64,6 +64,7 @@ jobs:
           args: >
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
 
   build_and_push:
     name: Build & push Docker image
