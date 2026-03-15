@@ -50,7 +50,7 @@ apiClient.interceptors.response.use(
   error => {
     const status = error?.response?.status;
     const url: string | undefined = error?.config?.url;
-    const browserWindow = typeof globalThis.window === 'undefined' ? undefined : globalThis.window;
+    const browserWindow = globalThis.window;
 
     const isLoginRequest = url?.includes('/auth/login');
 

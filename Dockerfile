@@ -32,8 +32,8 @@ ENV NODE_ENV=production \
 
 USER node
 
-COPY --chown=node:node --chmod=0555 --from=builder /app/.next/standalone ./
-COPY --chown=node:node --chmod=0555 --from=builder /app/.next/static ./.next/static
-COPY --chown=node:node --chmod=0555 --from=builder /app/public ./public
+COPY --chown=root:root --chmod=0555 --from=builder /app/.next/standalone ./
+COPY --chown=root:root --chmod=0555 --from=builder /app/.next/static ./.next/static
+COPY --chown=root:root --chmod=0555 --from=builder /app/public ./public
 EXPOSE 3000
 CMD ["node", "server.js"]
