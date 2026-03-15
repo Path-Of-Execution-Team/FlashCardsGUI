@@ -30,10 +30,13 @@ ENV NODE_ENV=production \
     PORT=3000 \
     HOSTNAME=0.0.0.0
 
-USER node
-
 COPY --chown=root:root --chmod=0555 --from=builder /app/.next/standalone ./
 COPY --chown=root:root --chmod=0555 --from=builder /app/.next/static ./.next/static
 COPY --chown=root:root --chmod=0555 --from=builder /app/public ./public
+
+# Keep app assets read-only, but leave Next.js runtime cache writable for the app user.
+RUN mkdir -p .next/cache && chown -R node:node .next/cache && chmod 0755 .next/cache
+
+USER node
 EXPOSE 3000
 CMD ["node", "server.js"]
