@@ -50,16 +50,17 @@ apiClient.interceptors.response.use(
   error => {
     const status = error?.response?.status;
     const url: string | undefined = error?.config?.url;
+    const browserWindow = typeof globalThis.window === 'undefined' ? undefined : globalThis.window;
 
     const isLoginRequest = url?.includes('/auth/login');
 
-    if (!isLoginRequest && (status === 401 || status === 403) && typeof window !== 'undefined') {
+    if (!isLoginRequest && (status === 401 || status === 403) && browserWindow) {
       setAuthToken(null);
 
-      const segments = window.location.pathname.split('/');
+      const segments = browserWindow.location.pathname.split('/');
       const locale = segments[1] || 'pl';
 
-      window.location.href = `/${locale}/auth/login`;
+      browserWindow.location.href = `/${locale}/auth/login`;
     }
 
     return Promise.reject(error);

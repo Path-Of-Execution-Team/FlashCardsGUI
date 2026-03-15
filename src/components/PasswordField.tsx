@@ -35,8 +35,8 @@ type PasswordFieldWithMeterProps = BasePasswordFieldProps & {
 
 type PasswordFieldWithoutMeterProps = BasePasswordFieldProps & {
   strengthMeter?: false;
-  watch?: undefined;
-  isDirty?: undefined;
+  watch?: never;
+  isDirty?: never;
 };
 
 type PasswordFieldProps = PasswordFieldWithMeterProps | PasswordFieldWithoutMeterProps;

@@ -4,7 +4,7 @@ export async function logToLoki(data: { level: string; msg: string; [key: string
     ...data,
     level: data.level.toLowerCase(),
     timestamp: new Date().toISOString(),
-    path: window.location.pathname,
+    path: globalThis.window.location.pathname,
     userAgent: navigator.userAgent,
   };
 

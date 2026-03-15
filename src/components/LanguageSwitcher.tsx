@@ -56,8 +56,8 @@ const LanguageSwitcher = () => {
             'aria-labelledby': 'basic-button',
           },
         }}>
-        {routing.locales.map((l, i) => (
-          <MenuItem key={i} onClick={() => handleSwitchLanguage(l)} disabled={l === locale}>
+        {routing.locales.map(l => (
+          <MenuItem key={l} onClick={() => handleSwitchLanguage(l)} disabled={l === locale}>
             <Image src={`/images/flags/${l}.png`} alt={`${l} flag`} width={32} height={32} style={{ marginRight: '0.5rem' }} />
             {l.toUpperCase()}
           </MenuItem>

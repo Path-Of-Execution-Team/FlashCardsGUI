@@ -21,7 +21,7 @@ const registerSchema = z
   .object({
     username: z
       .string()
-      .regex(/^[a-zA-Z0-9_]+$/, 'register.errors.usernameInvalid')
+      .regex(/^\w+$/, 'register.errors.usernameInvalid')
       .max(16, 'register.errors.usernameMax')
       .min(4, 'register.errors.usernameRequired'),
     email: z.email('register.errors.invalidEmail'),
@@ -79,7 +79,7 @@ const RegisterForm = () => {
           field === 'confirmPassword' ||
           field === 'agreeToTerms'
         ) {
-          setError(field, { type: 'manual', message: t(issue.message as string) });
+          setError(field, { type: 'manual', message: t(issue.message) });
         }
       });
       return;

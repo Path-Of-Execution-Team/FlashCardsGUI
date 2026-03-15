@@ -46,7 +46,7 @@ const calculatePasswordStrength = (password: string): PasswordStrength => {
 
   const hasLower = /[a-z]/.test(password);
   const hasUpper = /[A-Z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
+  const hasNumber = /\d/.test(password);
   const hasSymbol = /[^A-Za-z0-9]/.test(password);
 
   const varietyCount = [hasLower, hasUpper, hasNumber, hasSymbol].filter(Boolean).length;

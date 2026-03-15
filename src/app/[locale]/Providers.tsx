@@ -9,11 +9,11 @@ import { ReactNode, useEffect } from 'react';
 import { loadAuthTokenFromCookie, setApiClientLocale } from '@/lib/apiClient';
 import theme from '@/styles/theme';
 
-type ProvidersProps = {
+type ProvidersProps = Readonly<{
   children: ReactNode;
   locale: string;
   messages: Record<string, unknown>;
-};
+}>;
 
 export function Providers({ children, locale, messages }: ProvidersProps) {
   useEffect(() => {
