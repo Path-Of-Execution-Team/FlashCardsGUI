@@ -28,11 +28,11 @@ export async function POST(req: Request) {
       console.log(serializedLog);
     }
 
-    recordRequest('/api/log-to-loki', '200', Date.now() - start, 'POST');
+    recordRequest('/api/log-to-loki', Date.now() - start, '200', 'POST');
     return new Response('ok');
   } catch (error) {
     console.error('Error logging to Loki:', error);
-    recordRequest('/api/log-to-loki', '500', Date.now() - start, 'POST');
+    recordRequest('/api/log-to-loki', Date.now() - start, '500', 'POST');
     return new Response('error', { status: 500 });
   }
 }

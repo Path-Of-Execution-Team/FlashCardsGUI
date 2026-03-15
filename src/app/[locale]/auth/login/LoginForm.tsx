@@ -44,7 +44,7 @@ export default function LoginForm() {
       parsed.error.issues.forEach(issue => {
         const field = issue.path[0];
         if (field === 'login' || field === 'password') {
-          setError(field, { type: 'manual', message: t(issue.message as string) });
+          setError(field, { type: 'manual', message: t(issue.message) });
         }
       });
       return;
