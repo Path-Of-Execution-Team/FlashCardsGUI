@@ -11,7 +11,11 @@ cypress
 *.log
 
 .git
+.github
 .gitignore
+
+Dockerfile
+.dockerignore
 
 .prettierrc*
 .eslint*
