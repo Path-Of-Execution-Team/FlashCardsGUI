@@ -5,7 +5,7 @@ on:
     branches: [develop]
   push:
     branches: [main, develop]
-    tags: ["v*"]
+    tags: ['v*']
   workflow_dispatch:
     inputs:
       environment:
@@ -14,7 +14,7 @@ on:
         type: choice
         options: [develop, production]
       source_ref:
-        description: "Branch, tag or SHA to build (default: branch selected in the workflow UI)"
+        description: 'Branch, tag or SHA to build (default: branch selected in the workflow UI)'
         required: false
         type: string
 
@@ -138,7 +138,7 @@ jobs:
   # ---------------------------------------------------------------------------
   #  Tells the FlashCards root repository that a new image exists so it can
   #  render the manifests and roll the matching cluster:
-  #
+  #ovh
   #    develop -> 57.128.251.9  (namespace moomento-dev)
   #    main    -> 57.129.66.163 (namespace moomento)
   #
