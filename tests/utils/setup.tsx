@@ -25,7 +25,7 @@ vi.mock('next-intl', () => ({
 
 vi.mock('next-intl/navigation', () => ({
   createNavigation: () => ({
-    Link: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a {...props} />,
+    Link: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => React.createElement('a', props),
     redirect: vi.fn(),
     usePathname: () => '/login',
     useRouter: () => ({

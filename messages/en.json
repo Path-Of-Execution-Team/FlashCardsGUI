@@ -2,6 +2,88 @@
   "appName": "MooMento",
   "welcome": "Welcome!",
   "clickMe": "Click me",
+  "nav": {
+    "home": "MooMento home",
+    "primary": "Primary navigation",
+    "howItWorks": "How it works",
+    "method": "Method",
+    "signIn": "Sign in",
+    "start": "Get started",
+    "useDarkTheme": "Switch to dark theme",
+    "useLightTheme": "Switch to light theme"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Learning that follows your memory",
+      "title": "Remember what matters.",
+      "description": "Build your own flashcards, review them at the right moment, and turn short sessions into knowledge that lasts.",
+      "primaryCta": "Create your first deck",
+      "secondaryCta": "I already have an account",
+      "proofOne": "Start for free",
+      "proofTwo": "First session in 2 minutes"
+    },
+    "preview": {
+      "ariaLabel": "Preview of a flashcard study session",
+      "session": "Today's session",
+      "progress": "02 / 18",
+      "category": "Biology",
+      "question": "What is the basic unit of life?",
+      "hint": "Tap to reveal the answer",
+      "queue": "16 cards remaining",
+      "time": "about 4 min"
+    },
+    "steps": {
+      "eyebrow": "A simple rhythm",
+      "title": "Less organizing. More remembering.",
+      "capture": {
+        "title": "Capture it your way",
+        "description": "Add concepts, questions, and answers in the format that works best for the way you learn."
+      },
+      "practice": {
+        "title": "Practice at the right time",
+        "description": "MooMento builds your review queue so you can focus on the material that is just starting to fade."
+      },
+      "remember": {
+        "title": "See your progress",
+        "description": "Short, regular sessions build durable memory without hours of cramming before a test."
+      }
+    },
+    "method": {
+      "eyebrow": "Your plan for today",
+      "title": "One calm session. Real progress.",
+      "description": "Open the app and know exactly what is worth reviewing. No searching, sorting, or choosing from scratch.",
+      "review": "Reviews due",
+      "reviewValue": "18 cards",
+      "decks": "Active decks",
+      "decksValue": "4 topics",
+      "streak": "Consistency",
+      "streakValue": "6 days"
+    },
+    "finalCta": {
+      "title": "Give knowledge a moment every day.",
+      "description": "Your first deck and first session are closer than you think.",
+      "button": "Start now"
+    },
+    "footer": {
+      "note": "Small sessions. Lasting knowledge."
+    }
+  },
+  "auth": {
+    "asideLabel": "Today's goal",
+    "asideValue": "One short, focused session",
+    "login": {
+      "eyebrow": "Good to see you",
+      "title": "Get back into your rhythm.",
+      "description": "Your decks and scheduled reviews are waiting exactly where you left them.",
+      "formEyebrow": "Account access"
+    },
+    "register": {
+      "eyebrow": "Start at your pace",
+      "title": "Build a habit that lasts.",
+      "description": "A few minutes a day is enough to turn difficult material into knowledge you can rely on.",
+      "formEyebrow": "New account"
+    }
+  },
   "login": {
     "welcomeBack": "Welcome back",
     "signIn": "Sign in",
@@ -49,7 +131,19 @@
   "errors": {
     "networkError": "A network error occurred. Please check your internet connection.",
     "serverError": "A server error occurred. Please try again later.",
-    "unknownError": "Network error. Please check your internet connection.",
+    "unknownError": "We could not connect. Please check your internet connection.",
     "invalidCredentials": "Invalid login or password"
+  },
+  "terms": {
+    "eyebrow": "MooMento · terms",
+    "title": "Terms of use",
+    "intro": "In short: by using MooMento, you keep your account secure and use the app for its intended purpose.",
+    "accountTitle": "Your account",
+    "accountBody": "Provide accurate information, protect your password, and let us know if you notice unauthorized access.",
+    "contentTitle": "Your materials",
+    "contentBody": "You keep the rights to the flashcards you create. Do not add content you are not allowed to store or share.",
+    "privacyTitle": "Privacy",
+    "privacyBody": "We process data only as needed to operate your account and synchronize your progress.",
+    "back": "Back to registration"
   }
 }

@@ -1,10 +1,13 @@
-import Container from '@mui/material/Container';
+import '../globals.css';
+
+import Box from '@mui/material/Box';
+import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import { Roboto } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import AppHeader from '@/components/AppHeader';
 import { routing } from '@/i18n/routing';
 
 import { Providers } from './Providers';
@@ -24,27 +27,15 @@ export default async function RootLayout({ children, params }: { children: React
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={roboto.variable}>
-      <body
-        style={{
-          margin: 0,
-          backgroundImage: 'linear-gradient(135deg, #020617 0%, #111827 40%, #1f2937 100%)',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}>
-        <Container
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh',
-            width: '100vw',
-          }}>
-          <Providers locale={locale} messages={messages}>
-            <LanguageSwitcher />
-            {children}
-          </Providers>
-        </Container>
+    <html lang={locale} className={roboto.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body>
+        <InitColorSchemeScript defaultMode="system" />
+        <Providers locale={locale} messages={messages}>
+          <Box sx={{ minHeight: '100vh', overflow: 'clip' }}>
+            <AppHeader />
+            <Box component="main">{children}</Box>
+          </Box>
+        </Providers>
       </body>
     </html>
   );

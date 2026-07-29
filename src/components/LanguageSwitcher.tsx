@@ -1,8 +1,8 @@
 'use client';
 
-import TranslateIcon from '@mui/icons-material/Translate';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import TranslateRoundedIcon from '@mui/icons-material/TranslateRounded';
+import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/image';
@@ -36,16 +36,26 @@ const LanguageSwitcher = () => {
   };
 
   return (
-    <Box sx={{ position: 'absolute', top: 16, right: 16, zIndex: 99999 }}>
-      <IconButton
+    <>
+      <Button
         aria-controls={open ? 'languages-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
+        aria-label={`Current language: ${locale.toUpperCase()}`}
         onClick={handleClick}
-        size="large"
-        sx={{ color: '#fff' }}>
-        <TranslateIcon />
-      </IconButton>
+        variant="text"
+        startIcon={<TranslateRoundedIcon sx={{ fontSize: 18 }} />}
+        endIcon={<ExpandMoreRoundedIcon sx={{ fontSize: 17 }} />}
+        sx={{
+          minWidth: 0,
+          minHeight: 42,
+          px: 1,
+          color: 'text.secondary',
+          '& .MuiButton-startIcon': { mr: { xs: 0, sm: 0.5 } },
+          '& .MuiButton-endIcon': { display: { xs: 'none', sm: 'inherit' }, ml: 0 },
+        }}>
+        <span style={{ display: 'inline-block', minWidth: 20 }}>{locale.toUpperCase()}</span>
+      </Button>
       <Menu
         id="languages-menu"
         anchorEl={anchorEl}
@@ -57,13 +67,13 @@ const LanguageSwitcher = () => {
           },
         }}>
         {routing.locales.map((l, i) => (
-          <MenuItem key={i} onClick={() => handleSwitchLanguage(l)} disabled={l === locale}>
-            <Image src={`/images/flags/${l}.png`} alt={`${l} flag`} width={32} height={32} style={{ marginRight: '0.5rem' }} />
+          <MenuItem key={i} onClick={() => handleSwitchLanguage(l)} selected={l === locale} sx={{ minWidth: 132, gap: 1.25 }}>
+            <Image src={`/images/flags/${l}.png`} alt="" width={24} height={24} style={{ borderRadius: '50%' }} />
             {l.toUpperCase()}
           </MenuItem>
         ))}
       </Menu>
-    </Box>
+    </>
   );
 };
 

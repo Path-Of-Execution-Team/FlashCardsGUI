@@ -6,7 +6,7 @@
 # meaningless in an image and .git is excluded by .dockerignore anyway. None of
 # the runtime dependencies need install scripts.
 # -----------------------------------------------------------------------------
-FROM node:22.22-alpine3.22 AS deps
+FROM node:24.18-alpine3.23 AS deps
 
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -15,7 +15,7 @@ RUN npm ci --ignore-scripts
 # -----------------------------------------------------------------------------
 # Build
 # -----------------------------------------------------------------------------
-FROM node:22.22-alpine3.22 AS build
+FROM node:24.18-alpine3.23 AS build
 
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -31,7 +31,7 @@ RUN npm run build
 # -----------------------------------------------------------------------------
 # Runtime
 # -----------------------------------------------------------------------------
-FROM node:22.22-alpine3.22 AS runtime
+FROM node:24.18-alpine3.23 AS runtime
 
 # uid/gid must match runAsUser/runAsGroup in k8s/frontend.yaml. The stock `node`
 # user is 1000, so a dedicated one is created.

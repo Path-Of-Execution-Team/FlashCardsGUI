@@ -12,7 +12,7 @@ describe('LanguageSwitcher', () => {
     fireEvent.click(button);
 
     routing.locales.forEach(loc => {
-      expect(screen.getByText(loc.toUpperCase())).toBeInTheDocument();
+      expect(screen.getAllByText(loc.toUpperCase()).length).toBeGreaterThan(0);
     });
   });
 });

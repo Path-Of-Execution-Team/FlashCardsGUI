@@ -82,6 +82,7 @@ export default function LoginForm() {
 
   return (
     <AuthFormCard
+      mode="login"
       title={t('appName')}
       subtitle={t('login.welcomeBack')}
       onSubmit={handleSubmit(onSubmit)}

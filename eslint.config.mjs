@@ -1,19 +1,13 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import prettierConfig from 'eslint-config-prettier';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
+import prettierConfig from 'eslint-config-prettier/flat';
 import prettierPlugin from 'eslint-plugin-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const result = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+export default defineConfig([
+  ...nextVitals,
+  ...nextTs,
   {
     plugins: {
       prettier: prettierPlugin,
@@ -25,9 +19,6 @@ const result = [
       'simple-import-sort/exports': 'warn',
     },
   },
-  {
-    ...prettierConfig,
-  },
-];
-
-export default result;
+  prettierConfig,
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'coverage/**', 'cypress/screenshots/**', 'cypress/videos/**', 'next-env.d.ts']),
+]);

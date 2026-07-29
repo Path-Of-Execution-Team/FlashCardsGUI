@@ -1,11 +1,5 @@
-import { useEffect, useState } from 'react';
-
 type StrengthLabel =
-  | 'passwordStrength.veryWeak'
-  | 'passwordStrength.weak'
-  | 'passwordStrength.medium'
-  | 'passwordStrength.strong'
-  | 'passwordStrength.veryStrong';
+  'passwordStrength.veryWeak' | 'passwordStrength.weak' | 'passwordStrength.medium' | 'passwordStrength.strong' | 'passwordStrength.veryStrong';
 type StrengthColor = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 
 export interface PasswordStrength {
@@ -14,19 +8,7 @@ export interface PasswordStrength {
   color: StrengthColor;
 }
 
-export const usePasswordStrength = (password: string): PasswordStrength => {
-  const [strength, setStrength] = useState<PasswordStrength>({
-    percentage: 0,
-    label: 'passwordStrength.veryWeak',
-    color: 'error',
-  });
-
-  useEffect(() => {
-    setStrength(calculatePasswordStrength(password));
-  }, [password]);
-
-  return strength;
-};
+export const usePasswordStrength = (password: string): PasswordStrength => calculatePasswordStrength(password);
 
 const calculatePasswordStrength = (password: string): PasswordStrength => {
   if (!password) {

@@ -117,6 +117,7 @@ const RegisterForm = () => {
 
   return (
     <AuthFormCard
+      mode="register"
       title={t('appName')}
       subtitle={t('register.createAccount')}
       onSubmit={handleSubmit(onSubmit)}

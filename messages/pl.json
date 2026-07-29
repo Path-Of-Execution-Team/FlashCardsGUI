@@ -2,8 +2,90 @@
   "appName": "MooMento",
   "welcome": "Witaj!",
   "clickMe": "Kliknij mnie",
+  "nav": {
+    "home": "Strona główna MooMento",
+    "primary": "Główna nawigacja",
+    "howItWorks": "Jak to działa",
+    "method": "Metoda",
+    "signIn": "Zaloguj się",
+    "start": "Zacznij",
+    "useDarkTheme": "Włącz ciemny motyw",
+    "useLightTheme": "Włącz jasny motyw"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Nauka dopasowana do Twojej pamięci",
+      "title": "Zapamiętaj to, co ważne.",
+      "description": "Twórz własne fiszki, powtarzaj je we właściwym momencie i zamieniaj krótkie sesje w wiedzę, która zostaje na dłużej.",
+      "primaryCta": "Utwórz pierwszą talię",
+      "secondaryCta": "Mam już konto",
+      "proofOne": "Zacznij bezpłatnie",
+      "proofTwo": "Pierwsza sesja w 2 minuty"
+    },
+    "preview": {
+      "ariaLabel": "Podgląd sesji nauki z fiszką",
+      "session": "Dzisiejsza sesja",
+      "progress": "02 / 18",
+      "category": "Biologia",
+      "question": "Co jest podstawową jednostką życia?",
+      "hint": "Dotknij, aby odkryć odpowiedź",
+      "queue": "16 fiszek pozostało",
+      "time": "około 4 min"
+    },
+    "steps": {
+      "eyebrow": "Prosty rytm",
+      "title": "Mniej organizowania. Więcej zapamiętywania.",
+      "capture": {
+        "title": "Zapisz to po swojemu",
+        "description": "Dodawaj pojęcia, pytania i odpowiedzi dokładnie w takim formacie, w jakim najlepiej się uczysz."
+      },
+      "practice": {
+        "title": "Ćwicz w dobrym momencie",
+        "description": "MooMento układa kolejkę powtórek, dzięki czemu skupiasz się na materiałach, które właśnie zaczynają umykać."
+      },
+      "remember": {
+        "title": "Obserwuj swój postęp",
+        "description": "Krótkie, regularne sesje budują trwałą pamięć bez wielogodzinnego wkuwania przed sprawdzianem."
+      }
+    },
+    "method": {
+      "eyebrow": "Twój plan na dziś",
+      "title": "Jedna spokojna sesja. Realny postęp.",
+      "description": "Otwierasz aplikację i od razu wiesz, co warto powtórzyć. Bez szukania, sortowania i wybierania od zera.",
+      "review": "Powtórki do zrobienia",
+      "reviewValue": "18 fiszek",
+      "decks": "Aktywne talie",
+      "decksValue": "4 tematy",
+      "streak": "Regularność",
+      "streakValue": "6 dni"
+    },
+    "finalCta": {
+      "title": "Daj wiedzy chwilę każdego dnia.",
+      "description": "Pierwsza talia i pierwsza sesja są bliżej, niż myślisz.",
+      "button": "Zacznij teraz"
+    },
+    "footer": {
+      "note": "Małe sesje. Trwała wiedza."
+    }
+  },
+  "auth": {
+    "asideLabel": "Dzisiejszy cel",
+    "asideValue": "Jedna krótka, skupiona sesja",
+    "login": {
+      "eyebrow": "Dobrze Cię widzieć",
+      "title": "Wróć do swojego rytmu.",
+      "description": "Twoje talie i zaplanowane powtórki czekają dokładnie tam, gdzie zostały.",
+      "formEyebrow": "Dostęp do konta"
+    },
+    "register": {
+      "eyebrow": "Zacznij spokojnie",
+      "title": "Zbuduj nawyk, który zostaje.",
+      "description": "Kilka minut dziennie wystarczy, by trudny materiał stopniowo zamieniać w pewną wiedzę.",
+      "formEyebrow": "Nowe konto"
+    }
+  },
   "login": {
-    "welcomeBack": "Witamy ponownie",
+    "welcomeBack": "Witaj ponownie",
     "signIn": "Zaloguj się",
     "signingIn": "Logowanie...",
     "noAccountRegister": "Nie masz konta? Zarejestruj się",
@@ -47,8 +129,21 @@
     "veryStrong": "Bardzo silne"
   },
   "errors": {
-    "networkError": "Wystąpił błąd sieci. Proszę sprawdź swoje połączenie internetowe.",
-    "serverError": "Wystąpił błąd serwera. Proszę spróbuj ponownie później.",
+    "networkError": "Wystąpił błąd sieci. Sprawdź swoje połączenie internetowe.",
+    "serverError": "Wystąpił błąd serwera. Spróbuj ponownie później.",
+    "unknownError": "Nie udało się połączyć. Sprawdź swoje połączenie internetowe.",
     "invalidCredentials": "Nieprawidłowy login lub hasło"
+  },
+  "terms": {
+    "eyebrow": "MooMento · zasady",
+    "title": "Warunki korzystania",
+    "intro": "Krótko i jasno: korzystając z MooMento, dbasz o bezpieczeństwo swojego konta i używasz aplikacji zgodnie z jej przeznaczeniem.",
+    "accountTitle": "Twoje konto",
+    "accountBody": "Podawaj prawidłowe dane, chroń swoje hasło i poinformuj nas, jeśli zauważysz nieautoryzowany dostęp.",
+    "contentTitle": "Twoje materiały",
+    "contentBody": "Zachowujesz prawa do tworzonych fiszek. Nie dodawaj treści, których nie masz prawa przechowywać lub udostępniać.",
+    "privacyTitle": "Prywatność",
+    "privacyBody": "Przetwarzamy dane tylko w zakresie potrzebnym do działania konta i synchronizacji postępów.",
+    "back": "Wróć do rejestracji"
   }
 }

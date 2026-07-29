@@ -82,7 +82,7 @@ describe('Register page', () => {
     cy.get('[data-testid="submit-button"]').click();
     cy.wait('@registerRequest');
 
-    cy.contains('Wystąpił błąd serwera. Proszę spróbuj ponownie później.').should('be.visible');
+    cy.contains('Wystąpił błąd serwera. Spróbuj ponownie później.').should('be.visible');
   });
 
   it('should go to login page when clicking the link', () => {

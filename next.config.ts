@@ -1,14 +1,10 @@
-import { NextConfig } from 'next';
+import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {},
   async rewrites() {
     const backendHost = process.env.NEXT_PUBLIC_API_URL || 'backend:8080';

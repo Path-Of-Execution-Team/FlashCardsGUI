@@ -23,7 +23,7 @@ export function Providers({ children, locale, messages }: ProvidersProps) {
 
   return (
     <AppRouterCacheProvider options={{ key: 'css' }}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme} defaultMode="system">
         <CssBaseline />
         <NextIntlClientProvider locale={locale} messages={messages} timeZone={'Europe/Warsaw'}>
           {children}
