@@ -1,5 +1,6 @@
 describe('Login page', () => {
   const loginUrl = '/pl/auth/login';
+  const authTokenCacheKey = 'moomento.auth-token';
 
   it('should shows validation errors when the form is empty', () => {
     cy.visit(loginUrl);
@@ -29,8 +30,10 @@ describe('Login page', () => {
     });
 
     cy.getCookie('authToken').should('exist').its('value').should('eq', 'FAKE_JWT');
+    cy.window().its('localStorage').invoke('getItem', authTokenCacheKey).should('eq', 'FAKE_JWT');
 
-    cy.url().should('match', /\/pl\/?$/);
+    cy.url().should('include', '/pl/dashboard');
+    cy.contains('Dzień dobry, Aniu.').should('be.visible');
   });
 
   it('should show an error message for invalid login credentials on 401', () => {

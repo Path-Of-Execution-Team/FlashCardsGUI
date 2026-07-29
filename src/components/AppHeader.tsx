@@ -1,12 +1,14 @@
 'use client';
 
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useTranslations } from 'next-intl';
 
-import { Link } from '@/i18n/navigation';
+import { useAuth } from '@/auth/AuthProvider';
+import { Link, usePathname } from '@/i18n/navigation';
 import CowLogoIcon from '@/icons/CowLogoIcon';
 
 import LanguageSwitcher from './LanguageSwitcher';
@@ -14,6 +16,13 @@ import ThemeSwitcher from './ThemeSwitcher';
 
 const AppHeader = () => {
   const t = useTranslations();
+  const pathname = usePathname();
+  const { isAuthenticated, isHydrated } = useAuth();
+  const isUserArea = pathname.startsWith('/dashboard') || pathname.startsWith('/settings');
+
+  if (isUserArea) {
+    return null;
+  }
 
   return (
     <Box
@@ -73,26 +82,70 @@ const AppHeader = () => {
           </Link>
         </Box>
 
-        <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 } }}>
-          <Button
-            component={Link}
-            href="/auth/login"
-            variant="text"
-            sx={{ display: { xs: 'none', sm: 'inline-flex' }, color: 'text.primary', minHeight: 42, px: 1.5 }}>
-            {t('nav.signIn')}
-          </Button>
-          <Button
-            component={Link}
-            href="/auth/register"
-            sx={{
-              display: { xs: 'none', sm: 'inline-flex' },
-              minHeight: 42,
-              px: 2.25,
-              fontSize: 14,
-              '&:hover': { bgcolor: 'var(--fc-action-hover)' },
-            }}>
-            {t('nav.start')}
-          </Button>
+        <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 0.75 }}>
+          {!isHydrated && <Box aria-hidden sx={{ width: { xs: 0, sm: 188 }, height: 42 }} />}
+          {isHydrated && isAuthenticated && (
+            <Button
+              component={Link}
+              href="/dashboard"
+              variant="outlined"
+              aria-label={t('nav.myDashboard')}
+              startIcon={<DashboardRoundedIcon />}
+              sx={{
+                minWidth: { xs: 42, sm: 'auto' },
+                minHeight: 42,
+                px: { xs: 1, sm: 1.5 },
+                borderColor: 'divider',
+                borderRadius: '12px',
+                color: 'text.primary',
+                '& .MuiButton-startIcon': { m: { xs: 0, sm: '0 8px 0 0' } },
+                '&:hover': {
+                  borderColor: 'text.secondary',
+                  bgcolor: 'var(--fc-page-hover)',
+                  transform: 'translateY(-1px)',
+                },
+              }}>
+              <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                {t('nav.myDashboard')}
+              </Box>
+            </Button>
+          )}
+          {isHydrated && !isAuthenticated && (
+            <>
+              <Button
+                component={Link}
+                href="/auth/login"
+                variant="outlined"
+                sx={{
+                  display: { xs: 'none', sm: 'inline-flex' },
+                  minHeight: 42,
+                  px: 1.75,
+                  borderColor: 'divider',
+                  borderRadius: '12px',
+                  color: 'text.primary',
+                  '&:hover': {
+                    borderColor: 'text.secondary',
+                    bgcolor: 'var(--fc-page-hover)',
+                    transform: 'translateY(-1px)',
+                  },
+                }}>
+                {t('nav.signIn')}
+              </Button>
+              <Button
+                component={Link}
+                href="/auth/register"
+                sx={{
+                  display: { xs: 'none', sm: 'inline-flex' },
+                  minHeight: 42,
+                  px: 2.25,
+                  borderRadius: '12px',
+                  fontSize: 14,
+                  '&:hover': { bgcolor: 'var(--fc-action-hover)', transform: 'translateY(-1px)' },
+                }}>
+                {t('nav.start')}
+              </Button>
+            </>
+          )}
           <ThemeSwitcher />
           <LanguageSwitcher />
         </Box>

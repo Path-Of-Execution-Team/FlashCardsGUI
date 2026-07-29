@@ -30,6 +30,8 @@ const ThemeSwitcher = () => {
           height: 42,
           border: '1px solid',
           borderColor: 'divider',
+          borderRadius: '12px',
+          bgcolor: 'transparent',
           color: isDark ? 'secondary.main' : 'text.secondary',
           transition: 'transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease',
           '&:hover': {

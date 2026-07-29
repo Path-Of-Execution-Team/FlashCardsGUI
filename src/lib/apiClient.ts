@@ -1,5 +1,80 @@
 import axios from 'axios';
 
+export const AUTH_TOKEN_CACHE_KEY = 'moomento.auth-token';
+
+const AUTH_TOKEN_COOKIE_NAME = 'authToken';
+const AUTH_TOKEN_MAX_AGE = 60 * 60 * 24 * 7;
+
+export type AuthTokenSnapshot = {
+  token: string | null;
+  isHydrated: boolean;
+};
+
+const serverAuthTokenSnapshot: AuthTokenSnapshot = {
+  token: null,
+  isHydrated: false,
+};
+
+const authTokenListeners = new Set<() => void>();
+
+const readTokenFromCookie = () => {
+  if (typeof document === 'undefined') return null;
+
+  const prefix = `${AUTH_TOKEN_COOKIE_NAME}=`;
+  const cookie = document.cookie.split('; ').find(row => row.startsWith(prefix));
+
+  if (!cookie) return null;
+
+  try {
+    return decodeURIComponent(cookie.slice(prefix.length)) || null;
+  } catch {
+    return cookie.slice(prefix.length) || null;
+  }
+};
+
+const readTokenFromCache = () => {
+  if (typeof window === 'undefined') return null;
+
+  try {
+    return window.localStorage.getItem(AUTH_TOKEN_CACHE_KEY) || readTokenFromCookie();
+  } catch {
+    return readTokenFromCookie();
+  }
+};
+
+const initialClientToken = readTokenFromCache();
+
+let authTokenSnapshot: AuthTokenSnapshot = {
+  token: initialClientToken,
+  isHydrated: typeof window !== 'undefined',
+};
+
+const emitAuthTokenChange = () => {
+  authTokenListeners.forEach(listener => listener());
+};
+
+const updateAuthTokenSnapshot = (token: string | null, isHydrated = true) => {
+  if (authTokenSnapshot.token === token && authTokenSnapshot.isHydrated === isHydrated) return;
+
+  authTokenSnapshot = {
+    token,
+    isHydrated,
+  };
+  emitAuthTokenChange();
+};
+
+const writeAuthTokenCookie = (token: string | null) => {
+  if (typeof document === 'undefined') return;
+
+  if (!token) {
+    document.cookie = `${AUTH_TOKEN_COOKIE_NAME}=; Path=/; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
+    return;
+  }
+
+  const secure = typeof window !== 'undefined' && window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `${AUTH_TOKEN_COOKIE_NAME}=${encodeURIComponent(token)}; Path=/; Max-Age=${AUTH_TOKEN_MAX_AGE}; SameSite=Lax${secure}`;
+};
+
 const apiClient = axios.create({
   baseURL: '/api',
   withCredentials: true,
@@ -8,29 +83,53 @@ const apiClient = axios.create({
   },
 });
 
-let authToken: string | null = null;
-
 export function setAuthToken(token: string | null) {
-  authToken = token;
-
-  if (typeof document === 'undefined') return;
-
-  if (token) {
-    document.cookie = `authToken=${token}; Path=/; Max-Age=86400; SameSite=Lax`;
-  } else {
-    document.cookie = 'authToken=; Path=/; Max-Age=0; SameSite=Lax';
+  if (typeof window !== 'undefined') {
+    try {
+      if (token) {
+        window.localStorage.setItem(AUTH_TOKEN_CACHE_KEY, token);
+      } else {
+        window.localStorage.removeItem(AUTH_TOKEN_CACHE_KEY);
+      }
+    } catch {
+      // The cookie remains the fallback when browser storage is unavailable.
+    }
   }
+
+  writeAuthTokenCookie(token);
+  updateAuthTokenSnapshot(token);
 }
 
-export function loadAuthTokenFromCookie() {
-  if (typeof document === 'undefined') return;
+export function hydrateAuthTokenFromCache() {
+  if (typeof window === 'undefined') return;
 
-  const match = document.cookie.split('; ').find(row => row.startsWith('authToken='));
+  const token = readTokenFromCache();
+  writeAuthTokenCookie(token);
+  updateAuthTokenSnapshot(token);
+}
 
-  if (match) {
-    const value = match.split('=')[1];
-    authToken = value || null;
-  }
+export function syncAuthTokenFromStorage(event: StorageEvent) {
+  if (event.key !== AUTH_TOKEN_CACHE_KEY && event.key !== null) return;
+
+  const token = event.key === null ? null : event.newValue;
+  writeAuthTokenCookie(token);
+  updateAuthTokenSnapshot(token);
+}
+
+export function getAuthTokenSnapshot() {
+  return authTokenSnapshot;
+}
+
+export function getServerAuthTokenSnapshot() {
+  return serverAuthTokenSnapshot;
+}
+
+export function subscribeToAuthToken(listener: () => void) {
+  authTokenListeners.add(listener);
+
+  return () => {
+    authTokenListeners.delete(listener);
+  };
 }
 
 export function setApiClientLocale(locale: string) {
@@ -38,6 +137,8 @@ export function setApiClientLocale(locale: string) {
 }
 
 apiClient.interceptors.request.use(config => {
+  const authToken = getAuthTokenSnapshot().token;
+
   if (authToken) {
     config.headers = config.headers ?? {};
     config.headers.Authorization = `Bearer ${authToken}`;

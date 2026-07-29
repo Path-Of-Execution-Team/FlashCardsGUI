@@ -60,7 +60,7 @@ export default function LoginForm() {
       const token = response.data;
 
       setAuthToken(token);
-      router.push(`/${locale}`);
+      router.push(`/${locale}/dashboard`);
     } catch (e) {
       const err = e as { response?: { status?: number } };
 

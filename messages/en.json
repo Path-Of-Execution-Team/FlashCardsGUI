@@ -9,6 +9,7 @@
     "method": "Method",
     "signIn": "Sign in",
     "start": "Get started",
+    "myDashboard": "My study",
     "useDarkTheme": "Switch to dark theme",
     "useLightTheme": "Switch to light theme"
   },
@@ -83,6 +84,112 @@
       "description": "A few minutes a day is enough to turn difficult material into knowledge you can rely on.",
       "formEyebrow": "New account"
     }
+  },
+  "userShell": {
+    "appName": "MooMento",
+    "home": "Go to my dashboard",
+    "navigation": "User navigation",
+    "dashboard": "My study",
+    "settings": "Settings",
+    "mockData": "Demo data",
+    "profileName": "Anna Malinowska",
+    "profileEmail": "anna@example.com",
+    "logout": "Sign out",
+    "checkingSession": "Checking session"
+  },
+  "dashboard": {
+    "eyebrow": "My study",
+    "title": "Good morning, Anna.",
+    "intro": "You have a short review queue and three active decks today.",
+    "newDeck": "New deck",
+    "demoAction": "This feature still uses demo data.",
+    "stats": {
+      "due": "cards due for review",
+      "decks": "active decks",
+      "streak": "day learning streak"
+    },
+    "session": {
+      "eyebrow": "Today's session",
+      "deck": "Biology · The cell",
+      "title": "18 cards are ready for review.",
+      "description": "Start with the material that is beginning to fade. The full queue should take about four minutes.",
+      "activeTitle": "Your session is ready.",
+      "activeDescription": "Demo mode prepared the first card. We will connect the real study session later.",
+      "button": "Start session",
+      "activeButton": "Session started",
+      "progressLabel": "Queue progress"
+    },
+    "activity": {
+      "eyebrow": "Recent activity",
+      "biologyReview": {
+        "title": "Reviewed 12 cards",
+        "meta": "Biology · today, 08:42"
+      },
+      "englishCards": {
+        "title": "Added 6 new cards",
+        "meta": "English · yesterday, 19:10"
+      },
+      "streak": {
+        "title": "New streak: 6 days",
+        "meta": "Consistency · yesterday"
+      }
+    },
+    "decks": {
+      "eyebrow": "Library",
+      "title": "Active decks",
+      "all": "View all",
+      "cards": "{count} cards",
+      "due": "{count} due today",
+      "done": "Done for today",
+      "mastery": "Mastery",
+      "more": "More options for {deck}",
+      "items": {
+        "biology": "Biology",
+        "english": "English",
+        "history": "History"
+      }
+    }
+  },
+  "settings": {
+    "eyebrow": "Account",
+    "title": "Settings",
+    "intro": "Adjust your profile and study rhythm. At this stage, changes are saved only in the demo state.",
+    "sectionNavigation": "Settings sections",
+    "sections": {
+      "profile": "Profile",
+      "study": "Study",
+      "appearance": "Appearance",
+      "notifications": "Notifications"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Basic information visible on your account.",
+      "name": "Full name",
+      "email": "Email address",
+      "mockName": "Anna Malinowska",
+      "mockEmail": "anna@example.com"
+    },
+    "study": {
+      "title": "Study preferences",
+      "description": "Set your daily target and reminder time.",
+      "dailyGoal": "Daily goal",
+      "reminderTime": "Reminder time",
+      "cardsPerDay": "{count} cards per day"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "description": "Choose a palette that suits your place and time of study.",
+      "theme": "Color theme",
+      "themeHint": "Switch between the light and dark views."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Choose what MooMento should remind you about.",
+      "email": "Email reminder for the daily session",
+      "streak": "Warning before breaking your streak"
+    },
+    "save": "Save settings",
+    "saved": "Demo settings saved."
   },
   "login": {
     "welcomeBack": "Welcome back",

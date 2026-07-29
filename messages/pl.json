@@ -9,6 +9,7 @@
     "method": "Metoda",
     "signIn": "Zaloguj się",
     "start": "Zacznij",
+    "myDashboard": "Moja nauka",
     "useDarkTheme": "Włącz ciemny motyw",
     "useLightTheme": "Włącz jasny motyw"
   },
@@ -83,6 +84,112 @@
       "description": "Kilka minut dziennie wystarczy, by trudny materiał stopniowo zamieniać w pewną wiedzę.",
       "formEyebrow": "Nowe konto"
     }
+  },
+  "userShell": {
+    "appName": "MooMento",
+    "home": "Przejdź do mojego panelu",
+    "navigation": "Nawigacja użytkownika",
+    "dashboard": "Moja nauka",
+    "settings": "Ustawienia",
+    "mockData": "Dane demonstracyjne",
+    "profileName": "Anna Malinowska",
+    "profileEmail": "anna@example.com",
+    "logout": "Wyloguj się",
+    "checkingSession": "Sprawdzanie sesji"
+  },
+  "dashboard": {
+    "eyebrow": "Moja nauka",
+    "title": "Dzień dobry, Aniu.",
+    "intro": "Masz dziś krótką kolejkę powtórek i trzy aktywne talie.",
+    "newDeck": "Nowa talia",
+    "demoAction": "Ta funkcja korzysta jeszcze z danych demonstracyjnych.",
+    "stats": {
+      "due": "fiszek do powtórki",
+      "decks": "aktywne talie",
+      "streak": "dni regularnej nauki"
+    },
+    "session": {
+      "eyebrow": "Dzisiejsza sesja",
+      "deck": "Biologia · Komórka",
+      "title": "18 fiszek czeka na powtórkę.",
+      "description": "Zacznij od materiału, który właśnie zaczyna umykać. Całość zajmie około czterech minut.",
+      "activeTitle": "Sesja jest gotowa.",
+      "activeDescription": "Tryb demonstracyjny przygotował pierwszą fiszkę. Integrację z właściwą sesją podepniemy później.",
+      "button": "Rozpocznij sesję",
+      "activeButton": "Sesja uruchomiona",
+      "progressLabel": "Postęp kolejki"
+    },
+    "activity": {
+      "eyebrow": "Ostatnia aktywność",
+      "biologyReview": {
+        "title": "Powtórzono 12 fiszek",
+        "meta": "Biologia · dzisiaj, 08:42"
+      },
+      "englishCards": {
+        "title": "Dodano 6 nowych fiszek",
+        "meta": "Angielski · wczoraj, 19:10"
+      },
+      "streak": {
+        "title": "Nowa seria: 6 dni",
+        "meta": "Regularność · wczoraj"
+      }
+    },
+    "decks": {
+      "eyebrow": "Biblioteka",
+      "title": "Aktywne talie",
+      "all": "Zobacz wszystkie",
+      "cards": "{count} fiszek",
+      "due": "{count} na dziś",
+      "done": "Na dziś gotowe",
+      "mastery": "Opanowanie",
+      "more": "Więcej opcji dla talii {deck}",
+      "items": {
+        "biology": "Biologia",
+        "english": "Angielski",
+        "history": "Historia"
+      }
+    }
+  },
+  "settings": {
+    "eyebrow": "Konto",
+    "title": "Ustawienia",
+    "intro": "Dopasuj profil i rytm nauki. Na tym etapie zmiany są zapisywane wyłącznie w stanie demonstracyjnym.",
+    "sectionNavigation": "Sekcje ustawień",
+    "sections": {
+      "profile": "Profil",
+      "study": "Nauka",
+      "appearance": "Wygląd",
+      "notifications": "Powiadomienia"
+    },
+    "profile": {
+      "title": "Profil",
+      "description": "Podstawowe dane widoczne na koncie.",
+      "name": "Imię i nazwisko",
+      "email": "Adres email",
+      "mockName": "Anna Malinowska",
+      "mockEmail": "anna@example.com"
+    },
+    "study": {
+      "title": "Preferencje nauki",
+      "description": "Ustaw dzienny cel i porę przypomnienia.",
+      "dailyGoal": "Dzienny cel",
+      "reminderTime": "Godzina przypomnienia",
+      "cardsPerDay": "{count} fiszek dziennie"
+    },
+    "appearance": {
+      "title": "Wygląd",
+      "description": "Wybierz paletę odpowiednią do miejsca i pory nauki.",
+      "theme": "Motyw kolorystyczny",
+      "themeHint": "Przełącz między jasnym i ciemnym widokiem."
+    },
+    "notifications": {
+      "title": "Powiadomienia",
+      "description": "Zdecyduj, o czym MooMento ma Ci przypominać.",
+      "email": "Przypomnienie email o dziennej sesji",
+      "streak": "Ostrzeżenie przed przerwaniem serii"
+    },
+    "save": "Zapisz ustawienia",
+    "saved": "Zapisano dane demonstracyjne."
   },
   "login": {
     "welcomeBack": "Witaj ponownie",

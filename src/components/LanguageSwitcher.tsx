@@ -43,14 +43,22 @@ const LanguageSwitcher = () => {
         aria-expanded={open ? 'true' : undefined}
         aria-label={`Current language: ${locale.toUpperCase()}`}
         onClick={handleClick}
-        variant="text"
+        variant="outlined"
         startIcon={<TranslateRoundedIcon sx={{ fontSize: 18 }} />}
         endIcon={<ExpandMoreRoundedIcon sx={{ fontSize: 17 }} />}
         sx={{
           minWidth: 0,
           minHeight: 42,
-          px: 1,
+          px: 1.25,
+          borderColor: 'divider',
+          borderRadius: '12px',
+          bgcolor: 'transparent',
           color: 'text.secondary',
+          '&:hover': {
+            borderColor: 'text.secondary',
+            bgcolor: 'var(--fc-page-hover)',
+            transform: 'translateY(-1px)',
+          },
           '& .MuiButton-startIcon': { mr: { xs: 0, sm: 0.5 } },
           '& .MuiButton-endIcon': { display: { xs: 'none', sm: 'inherit' }, ml: 0 },
         }}>

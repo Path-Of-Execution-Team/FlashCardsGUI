@@ -159,26 +159,42 @@ export default function Home() {
               <Box
                 sx={{
                   position: 'absolute',
-                  top: { xs: 24, sm: 30 },
-                  left: { xs: 24, sm: 32 },
-                  right: { xs: 24, sm: 32 },
+                  top: { xs: 18, sm: 24 },
+                  left: '50%',
+                  width: { xs: 'calc(100% - 36px)', sm: 'calc(100% - 56px)' },
+                  maxWidth: 470,
+                  transform: 'translateX(-50%)',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  gap: 2,
+                  px: { xs: 1.5, sm: 2 },
+                  py: 1.25,
+                  border: '1px solid var(--fc-brand-border)',
+                  borderRadius: 2,
+                  bgcolor: 'rgba(255, 255, 255, 0.045)',
                   color: 'var(--fc-brand-on-strong)',
                 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <BoltRoundedIcon sx={{ color: 'secondary.main', fontSize: 20 }} />
-                  <Typography variant="body2" sx={{ fontWeight: 700 }}>
+                  <BoltRoundedIcon sx={{ color: 'secondary.main', fontSize: 18 }} />
+                  <Typography variant="caption" sx={{ color: 'var(--fc-brand-on)', fontWeight: 800, letterSpacing: '0.02em' }}>
                     {t('home.preview.session')}
                   </Typography>
                 </Box>
-                <Typography variant="caption" sx={{ letterSpacing: '0.08em' }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    flexShrink: 0,
+                    color: 'var(--fc-brand-on)',
+                    fontWeight: 700,
+                    fontVariantNumeric: 'tabular-nums',
+                    letterSpacing: '0.06em',
+                  }}>
                   {t('home.preview.progress')}
                 </Typography>
               </Box>
 
-              <Box sx={{ position: 'relative', width: '76%', maxWidth: 390, height: { xs: 320, sm: 360 }, mt: 4 }}>
+              <Box sx={{ position: 'relative', width: { xs: '76%', sm: '68%' }, maxWidth: 360, height: { xs: 300, sm: 340 } }}>
                 <Box
                   className="flashcard-shadow-two"
                   sx={{
@@ -241,15 +257,28 @@ export default function Home() {
               <Box
                 sx={{
                   position: 'absolute',
-                  bottom: { xs: 22, sm: 30 },
-                  left: { xs: 24, sm: 32 },
-                  right: { xs: 24, sm: 32 },
+                  bottom: { xs: 18, sm: 24 },
+                  left: '50%',
+                  width: { xs: 'calc(100% - 36px)', sm: 'calc(100% - 56px)' },
+                  maxWidth: 470,
+                  transform: 'translateX(-50%)',
                   display: 'flex',
                   justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: 2,
+                  px: { xs: 1.5, sm: 2 },
+                  py: 1.25,
+                  border: '1px solid var(--fc-brand-border)',
+                  borderRadius: 2,
+                  bgcolor: 'rgba(255, 255, 255, 0.045)',
                   color: 'var(--fc-brand-on-muted)',
                 }}>
-                <Typography variant="caption">{t('home.preview.queue')}</Typography>
-                <Typography variant="caption">{t('home.preview.time')}</Typography>
+                <Typography variant="caption" sx={{ fontWeight: 600 }}>
+                  {t('home.preview.queue')}
+                </Typography>
+                <Typography variant="caption" sx={{ flexShrink: 0, fontWeight: 600 }}>
+                  {t('home.preview.time')}
+                </Typography>
               </Box>
             </Box>
           </Box>
